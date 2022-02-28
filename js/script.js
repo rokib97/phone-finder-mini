@@ -14,19 +14,32 @@ const findPhone = () => {
     </marquee>
     `;
     inputElement.value = "";
+    document.getElementById("search-result").innerHTML = "";
     return (document.getElementById("card-container").innerHTML = "");
   } else {
     const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => displayPhone(data.data));
-    errorMsg.textContent = "";
+      .then((data) => {
+        // handle error for not found phone data
+        if (data.data.length == 0) {
+          errorMsg.innerHTML = `
+          <marquee width="50%" direction="left" height="50px">
+          Please input valid something....
+          </marquee>
+          `;
+          document.getElementById("search-result").innerHTML = "";
+        } else {
+          displayPhone(data.data);
+          errorMsg.textContent = "";
+        }
+      });
   }
 };
 
 // function to get the fetched data and display them in UI
 const displayPhone = (phones) => {
-  //   console.log(phones);
+  console.log(phones);
   const topTwentyPhone = phones.slice(0, 20);
   const containerDiv = document.getElementById("card-container");
   topTwentyPhone.forEach((phone) => {
@@ -40,12 +53,16 @@ const displayPhone = (phones) => {
                 <h5 class="card-title text-center text-success">${phone.phone_name}</h5>
                 <p class="card-text text-center">Brand: <span class="text-primary">${phone.brand}</span></p>
                 <div class="text-center">
-                     <button class="btn btn-outline-success" type="button" id="button-addon2">Details</button>
+                     <button onclick="displsyDetail('')" class="btn btn-outline-success" type="button" id="button-addon2">Details</button>
                 </div>
             </div>
         </div>
 
     `;
     containerDiv.appendChild(div);
+    // showing search result brand name
+    document.getElementById("search-result").innerHTML = `
+    <h5 class="card-title text-center fw-bolder">Search results for <span class="text-success">"${phone.brand}"</span></h5>
+    `;
   });
 };
