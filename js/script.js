@@ -42,7 +42,7 @@ const findPhone = () => {
 
 // function to get the fetched data and display them in UI
 const displayPhone = (phones) => {
-  // console.log(phones);
+  console.log(phones);
   const topTwentyPhone = phones.slice(0, 20);
   const containerDiv = document.getElementById("card-container");
   topTwentyPhone.forEach((phone) => {
@@ -66,6 +66,7 @@ const displayPhone = (phones) => {
     // showing search result brand name
     document.getElementById("search-result").innerHTML = `
     <h5 class="card-title text-center fw-bolder">Search results for <span class="text-success">"${phone.brand}"</span></h5>
+    <h5 class="card-title text-center fw-bolder">Total items found : <span class="text-success">${phones.length}</span></h5>
     `;
   });
 };
@@ -79,11 +80,12 @@ const loadDetail = (infoId) => {
     .then((data) => displayDetail(data.data));
 };
 
+// function to display single phone details
 const displayDetail = (phone) => {
   console.log(phone);
   const detailContainerDiv = document.getElementById("phone-details");
   detailContainerDiv.innerHTML = `
-        <div class="card" style="width: 35rem">
+        <div class="card">
             <img src="${phone.image}" class="card-img-top w-50 mx-auto p-4" alt="...">
             <div class="card-body">
                   <h5 class="card-title text-success">${phone.name}</h5>
