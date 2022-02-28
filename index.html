@@ -16,13 +16,42 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+    <!-- header section starts here  -->
     <header>
-      <section class="container my-4">
+      <section class="container mt-4">
         <h1 class="text-center">Phone Finder</h1>
+        <div class="search-section">
+          <div class="d-flex w-50 mx-auto">
+            <input
+              id="input-field"
+              class="form-control me-2"
+              type="search"
+              placeholder="Search Phone Here..."
+              aria-label="Search"
+            />
+            <button
+              onclick="findPhone()"
+              class="btn btn-outline-success"
+              type="submit"
+            >
+              Search
+            </button>
+          </div>
+        </div>
+        <div
+          class="text-center text-danger fw-bolder mt-3"
+          id="error-msg"
+        ></div>
       </section>
     </header>
-    <main></main>
+    <!-- header section ends here  -->
+    <main>
+      <section class="container">
+        <div id="card-container" class="row row-cols-1 row-cols-md-3 g-4"></div>
+      </section>
+    </main>
     <footer></footer>
+    <!-- js script  -->
     <script src="./js/script.js"></script>
   </body>
 </html>
