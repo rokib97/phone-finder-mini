@@ -19,8 +19,10 @@
     <!-- header section starts here  -->
     <header>
       <section class="container mt-4">
-        <h1 class="text-center text-white">Phone Finder</h1>
-        <div class="search-section">
+        <h1 class="text-center text-white text-decoration-underline fw-bold">
+          PhoneFinder Mini
+        </h1>
+        <div class="search-section mt-4">
           <div class="d-flex w-75 mx-auto">
             <input
               id="input-field"
@@ -42,6 +44,9 @@
           class="text-center text-danger fw-bolder mt-3 fs-4"
           id="error-msg"
         ></div>
+        <div id="spinner" class="w-50 mx-auto">
+          <img class="w-100" src="./images/Color-Loading-1.gif" alt="" />
+        </div>
         <div id="image" class="w-50 mx-auto">
           <img class="img-fluid rounded-3" src="./images/3819627.jpg" alt="" />
         </div>
@@ -60,10 +65,22 @@
         <div id="search-result"></div>
         <div
           id="card-container"
-          class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 my-2"
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-5 my-2"
         ></div>
       </section>
       <!-- display all phone section ends here  -->
+
+      <!-- show more than 20 products starts here -->
+      <section class="container my-4 text-end w-100 mx-auto">
+        <button
+          onclick="findPhone()"
+          id="show-more"
+          class="btn btn-outline-success text-white"
+        >
+          Show More
+        </button>
+      </section>
+      <!-- show more than 20 products ends here -->
     </main>
     <footer></footer>
     <!-- js script  -->

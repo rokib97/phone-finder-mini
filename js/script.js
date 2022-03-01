@@ -16,17 +16,24 @@ const handleError = (value) => {
   }
 };
 
+// function to toggle spinner
+const spinnerToggle = (value) => {
+  document.getElementById("spinner").style.display = value;
+};
+
 // function to fetch phone data and find the phone
 const findPhone = () => {
+  spinnerToggle("block");
   document.getElementById("card-container").textContent = "";
   document.getElementById("phone-details").textContent = "";
   const inputElement = document.getElementById("input-field");
-  const inputValue = inputElement.value;
+  const inputValue = inputElement.value.toLowerCase();
   inputElement.value = "";
 
   // handle error for empty input and number value
   if (inputValue == "" || !isNaN(inputValue)) {
     handleError(true);
+    spinnerToggle("none");
     document.getElementById("image").style.display = "block";
     inputElement.value = "";
     document.getElementById("search-result").innerHTML = "";
@@ -40,18 +47,19 @@ const findPhone = () => {
         // handle error for not found phone data
         if (data.data.length === 0) {
           handleError(false);
+          spinnerToggle("none");
           document.getElementById("image").style.display = "block";
           document.getElementById("search-result").innerHTML = "";
           document.getElementById("phone-details").innerHTML = "";
         } else {
           displayPhone(data.data);
+          spinnerToggle("none");
           errorMsg.textContent = "";
           document.getElementById("image").style.display = "none";
         }
       });
   }
 };
-
 // function to get the fetched data and display them in UI
 const displayPhone = (phones) => {
   console.log(phones);
@@ -62,7 +70,7 @@ const displayPhone = (phones) => {
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
-        <div class="card h-100 shadow-lg rounded-3 p-3 border-0">
+        <div id="card-single" class="card h-100 shadow-lg rounded-3 p-3 border-0">
           <img src="${phone.image}" class="card-img-top img-fluid w-75 h-75 mx-auto" alt="..." />
             <div class="card-body">
                 <h5 class="card-title text-center text-success">${phone.phone_name}</h5>
