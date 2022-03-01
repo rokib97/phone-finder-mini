@@ -20,6 +20,7 @@ const spinnerToggle = (value) => {
 // function to fetch phone data and find the phones
 const findPhone = () => {
   spinnerToggle("block");
+  document.getElementById("search-result").textContent = "";
   document.getElementById("card-container").textContent = "";
   document.getElementById("phone-details").textContent = "";
   const inputElement = document.getElementById("input-field");
