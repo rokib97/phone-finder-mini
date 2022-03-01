@@ -85,8 +85,8 @@ const displayPhone = (phones) => {
     containerDiv.appendChild(div);
     // showing search result brand name
     document.getElementById("search-result").innerHTML = `
-    <h5 class="card-title text-center fw-bolder text-white">Search results for <span class="text-success">"${phone.brand}"</span></h5>
-    <h5 class="card-title text-center fw-bolder text-white">Total items found : <span class="text-success">${phones.length}</span></h5>
+    <h5 class="card-title text-center fw-bolder text-white">Search results for <span class="text-warning">"${phone.brand}"</span></h5>
+    <h5 class="card-title text-center fw-bolder text-white">Total items found : <span class="text-warning">${phones.length}</span></h5>
     `;
   });
 };
@@ -108,7 +108,7 @@ const displayDetail = (phone) => {
         <div class="card rounded-3 p-3 border-0 shadow-lg">
             <img src="${
               phone.image
-            }" class="card-img-top w-50 mx-auto img-fluid" alt="...">
+            }" class="card-img-top w-25 mx-auto img-fluid" alt="...">
             <div class="card-body">
                   <h5 class="card-title text-success">${phone.name}</h5>
                   <p class="card-text">Brand: <span class="text-primary">${
