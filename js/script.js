@@ -53,9 +53,6 @@ const findPhone = () => {
           document.getElementById("phone-details").innerHTML = "";
         } else {
           displayPhone(data.data);
-          spinnerToggle("none");
-          errorMsg.textContent = "";
-          document.getElementById("image").style.display = "none";
         }
       });
   }
@@ -84,6 +81,12 @@ const displayPhone = (phones) => {
 
     `;
     containerDiv.appendChild(div);
+
+    // spinner and showing error msg disabled
+    spinnerToggle("none");
+    errorMsg.textContent = "";
+    document.getElementById("image").style.display = "none";
+
     // showing search result separately
     document.getElementById("search-result").innerHTML = `
     <h5 class="card-title text-center fw-bolder text-white">Search results for <span class="text-warning">"${phone.brand}"</span></h5>
