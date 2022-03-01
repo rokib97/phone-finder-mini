@@ -15,13 +15,13 @@
     <!-- css stylesheets  -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
+  <body class="bg-dark">
     <!-- header section starts here  -->
     <header>
       <section class="container mt-4">
-        <h1 class="text-center">Phone Finder</h1>
+        <h1 class="text-center text-white">Phone Finder</h1>
         <div class="search-section">
-          <div class="d-flex w-50 mx-auto">
+          <div class="d-flex w-75 mx-auto">
             <input
               id="input-field"
               class="form-control me-2"
@@ -31,7 +31,7 @@
             />
             <button
               onclick="findPhone()"
-              class="btn btn-outline-success"
+              class="btn btn-outline-success text-white"
               type="submit"
             >
               Search
@@ -39,7 +39,7 @@
           </div>
         </div>
         <div
-          class="text-center text-danger fw-bolder mt-3"
+          class="text-center text-danger fw-bolder mt-3 fs-4"
           id="error-msg"
         ></div>
       </section>
@@ -48,7 +48,7 @@
     <main>
       <!-- display single phone details starts here  -->
       <section class="container py-3">
-        <div id="phone-details" class="w-50 mx-auto"></div>
+        <div id="phone-details" class="w-75 mx-auto"></div>
       </section>
       <!-- display single phone details ends here  -->
 
