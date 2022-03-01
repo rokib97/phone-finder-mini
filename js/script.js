@@ -3,15 +3,11 @@ const errorMsg = document.getElementById("error-msg");
 const handleError = (value) => {
   if (value) {
     errorMsg.innerHTML = `
-      <marquee behavior="scroll" scrollamount="12" width="75%" direction="left" height="50px">
-      Please input a valid name....
-      </marquee>
+    <h5 class="text-center text-danger"> Please input something valid !</h5>
       `;
   } else {
     errorMsg.innerHTML = `
-      <marquee behavior="scroll" scrollamount="12" width="75%" direction="left" height="50px">
-      Search phone not found....
-      </marquee>
+    <h5 class="text-center text-danger">Searched Phone not found !</h5>
       `;
   }
 };
@@ -52,7 +48,7 @@ const findPhone = () => {
           document.getElementById("search-result").innerHTML = "";
           document.getElementById("phone-details").innerHTML = "";
         } else {
-          displayPhone(data.data);
+          displayPhone(data.data.slice(0, 20));
         }
       });
   }
@@ -61,9 +57,8 @@ const findPhone = () => {
 // function to get the fetched data and display them in UI
 const displayPhone = (phones) => {
   // console.log(phones.length);
-  const topTwentyPhone = phones.slice(0, 20);
   const containerDiv = document.getElementById("card-container");
-  topTwentyPhone.forEach((phone) => {
+  phones.forEach((phone) => {
     // console.log(phone);
     const div = document.createElement("div");
     div.classList.add("col");
