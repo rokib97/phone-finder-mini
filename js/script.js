@@ -49,7 +49,7 @@ const findPhone = () => {
           document.getElementById("search-result").innerHTML = "";
           document.getElementById("phone-details").innerHTML = "";
         } else {
-          displayPhone(data.data.slice(0, 20));
+          displayPhone(data.data);
         }
       });
   }
@@ -58,8 +58,9 @@ const findPhone = () => {
 // function to get the fetched data and display them in UI
 const displayPhone = (phones) => {
   // console.log(phones.length);
+  const firstTweentyPhone = phones.slice(0, 20);
   const containerDiv = document.getElementById("card-container");
-  phones.forEach((phone) => {
+  firstTweentyPhone.forEach((phone) => {
     // console.log(phone);
     const div = document.createElement("div");
     div.classList.add("col");
