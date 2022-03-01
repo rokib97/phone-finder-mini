@@ -193,4 +193,5 @@ const displayDetail = (phone) => {
             </div>
       </div>
   `;
+  window.scrollTo(0, 200);
 };
