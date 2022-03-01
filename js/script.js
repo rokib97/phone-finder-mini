@@ -21,7 +21,7 @@ const spinnerToggle = (value) => {
   document.getElementById("spinner").style.display = value;
 };
 
-// function to fetch phone data and find the phone
+// function to fetch phone data and find the phones
 const findPhone = () => {
   spinnerToggle("block");
   document.getElementById("card-container").textContent = "";
@@ -60,9 +60,10 @@ const findPhone = () => {
       });
   }
 };
+
 // function to get the fetched data and display them in UI
 const displayPhone = (phones) => {
-  console.log(phones);
+  // console.log(phones.length);
   const topTwentyPhone = phones.slice(0, 20);
   const containerDiv = document.getElementById("card-container");
   topTwentyPhone.forEach((phone) => {
@@ -83,7 +84,7 @@ const displayPhone = (phones) => {
 
     `;
     containerDiv.appendChild(div);
-    // showing search result brand name
+    // showing search result separately
     document.getElementById("search-result").innerHTML = `
     <h5 class="card-title text-center fw-bolder text-white">Search results for <span class="text-warning">"${phone.brand}"</span></h5>
     <h5 class="card-title text-center fw-bolder text-white">Total items found : <span class="text-warning">${phones.length}</span></h5>
