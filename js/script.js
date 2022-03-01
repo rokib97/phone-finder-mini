@@ -27,6 +27,7 @@ const findPhone = () => {
   // handle error for empty input and number value
   if (inputValue == "" || !isNaN(inputValue)) {
     handleError(true);
+    document.getElementById("image").style.display = "block";
     inputElement.value = "";
     document.getElementById("search-result").innerHTML = "";
     document.getElementById("phone-details").innerHTML = "";
@@ -39,11 +40,13 @@ const findPhone = () => {
         // handle error for not found phone data
         if (data.data.length === 0) {
           handleError(false);
+          document.getElementById("image").style.display = "block";
           document.getElementById("search-result").innerHTML = "";
           document.getElementById("phone-details").innerHTML = "";
         } else {
           displayPhone(data.data);
           errorMsg.textContent = "";
+          document.getElementById("image").style.display = "none";
         }
       });
   }
@@ -125,12 +128,36 @@ const displayDetail = (phone) => {
                  </ul>
                   <p class="card-text text-success fw-bold">SENSORS:</span></p>
                   <ul class="">
-                    <li class="">${phone.mainFeatures.sensors[0]}</li>
-                    <li class="">${phone.mainFeatures.sensors[1]}</li>
-                    <li class="">${phone.mainFeatures.sensors[2]}</li>
-                    <li class="">${phone.mainFeatures.sensors[3]}</li>
-                    <li class="">${phone.mainFeatures.sensors[4]}</li>
-                    <li class="">${phone.mainFeatures.sensors[5]}</li>
+                    <li class="">${
+                      phone.mainFeatures.sensors[0]
+                        ? phone.mainFeatures.sensors[0]
+                        : "Not Found"
+                    }</li>
+                    <li class="">${
+                      phone.mainFeatures.sensors[1]
+                        ? phone.mainFeatures.sensors[1]
+                        : "Not Found"
+                    }</li>
+                    <li class="">${
+                      phone.mainFeatures.sensors[2]
+                        ? phone.mainFeatures.sensors[2]
+                        : "Not Found"
+                    }</li>
+                    <li class="">${
+                      phone.mainFeatures.sensors[3]
+                        ? phone.mainFeatures.sensors[3]
+                        : "Not Found"
+                    }</li>
+                    <li class="">${
+                      phone.mainFeatures.sensors[4]
+                        ? phone.mainFeatures.sensors[4]
+                        : "Not Found"
+                    }</li>
+                    <li class="">${
+                      phone.mainFeatures.sensors[5]
+                        ? phone.mainFeatures.sensors[5]
+                        : "Not Found"
+                    }</li>
                  </ul>
                  <p class="card-text text-success fw-bold">OTHERS:</span></p>
                   <ul class="">
