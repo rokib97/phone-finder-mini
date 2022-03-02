@@ -1,5 +1,10 @@
+// gets all the elemets div by id
+const inputElement = document.getElementById("input-field");
 const errorMsg = document.getElementById("error-msg");
-// function to generate a error messeage
+const containerDiv = document.getElementById("card-container");
+const detailContainerDiv = document.getElementById("phone-details");
+
+// function to generate a text error messeage
 const handleError = (value) => {
   if (value) {
     errorMsg.innerHTML = `
@@ -17,13 +22,22 @@ const spinnerToggle = (value) => {
   document.getElementById("spinner").style.display = value;
 };
 
+// function to clear data field when work is done
+const clearData = (id) => {
+  document.getElementById(id).textContent = "";
+};
+
+// function to showing error image
+const imgEror = (id, value) => {
+  document.getElementById(id).style.display = value;
+};
+
 // function to fetch phone data and find the phones
 const findPhone = () => {
   spinnerToggle("block");
-  document.getElementById("search-result").textContent = "";
-  document.getElementById("card-container").textContent = "";
-  document.getElementById("phone-details").textContent = "";
-  const inputElement = document.getElementById("input-field");
+  clearData("search-result");
+  clearData("phone-details");
+  clearData("card-container");
   const inputValue = inputElement.value.toLowerCase();
   inputElement.value = "";
 
@@ -31,11 +45,11 @@ const findPhone = () => {
   if (inputValue == "" || !isNaN(inputValue)) {
     handleError(true);
     spinnerToggle("none");
-    document.getElementById("image").style.display = "block";
+    imgEror("image", "block");
+    clearData("search-result");
+    clearData("phone-details");
+    clearData("card-container");
     inputElement.value = "";
-    document.getElementById("search-result").innerHTML = "";
-    document.getElementById("phone-details").innerHTML = "";
-    return (document.getElementById("card-container").innerHTML = "");
   } else {
     const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`;
     fetch(url)
@@ -45,9 +59,9 @@ const findPhone = () => {
         if (data.data.length === 0) {
           handleError(false);
           spinnerToggle("none");
-          document.getElementById("image").style.display = "block";
-          document.getElementById("search-result").innerHTML = "";
-          document.getElementById("phone-details").innerHTML = "";
+          imgEror("image", "block");
+          clearData("search-result");
+          clearData("phone-details");
         } else {
           displayPhone(data.data);
         }
@@ -57,11 +71,8 @@ const findPhone = () => {
 
 // function to get the fetched data and display them in UI
 const displayPhone = (phones) => {
-  // console.log(phones.length);
   const firstTweentyPhone = phones.slice(0, 20);
-  const containerDiv = document.getElementById("card-container");
   firstTweentyPhone.forEach((phone) => {
-    // console.log(phone);
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
@@ -82,7 +93,7 @@ const displayPhone = (phones) => {
     // spinner and showing error msg disabled
     spinnerToggle("none");
     errorMsg.textContent = "";
-    document.getElementById("image").style.display = "none";
+    imgEror("image", "none");
 
     // showing search result separately
     document.getElementById("search-result").innerHTML = `
@@ -94,7 +105,6 @@ const displayPhone = (phones) => {
 
 // function to fetch single phone and get the date
 const loadDetail = (infoId) => {
-  // console.log(infoId);
   const url = `https://openapi.programming-hero.com/api/phone/${infoId}`;
   fetch(url)
     .then((res) => res.json())
@@ -104,7 +114,6 @@ const loadDetail = (infoId) => {
 // function to display single phone details
 const displayDetail = (phone) => {
   console.log(phone);
-  const detailContainerDiv = document.getElementById("phone-details");
   detailContainerDiv.innerHTML = `
         <div class="card rounded-3 p-3 border-0 shadow-lg">
             <img src="${
