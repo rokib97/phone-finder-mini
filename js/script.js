@@ -28,7 +28,7 @@ const clearData = (id) => {
 };
 
 // function to showing error image
-const imgEror = (id, value) => {
+const imgError = (id, value) => {
   document.getElementById(id).style.display = value;
 };
 
@@ -45,7 +45,7 @@ const findPhone = () => {
   if (inputValue == "" || !isNaN(inputValue)) {
     handleError(true);
     spinnerToggle("none");
-    imgEror("image", "block");
+    imgError("image", "block");
     clearData("search-result");
     clearData("phone-details");
     clearData("card-container");
@@ -59,7 +59,7 @@ const findPhone = () => {
         if (data.data.length === 0) {
           handleError(false);
           spinnerToggle("none");
-          imgEror("image", "block");
+          imgError("image", "block");
           clearData("search-result");
           clearData("phone-details");
         } else {
@@ -93,7 +93,7 @@ const displayPhone = (phones) => {
     // spinner and showing error msg disabled
     spinnerToggle("none");
     errorMsg.textContent = "";
-    imgEror("image", "none");
+    imgError("image", "none");
 
     // showing search result separately
     document.getElementById("search-result").innerHTML = `
