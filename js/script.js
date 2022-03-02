@@ -34,11 +34,11 @@ const imgEror = (id, value) => {
 
 // function to fetch phone data and find the phones
 const findPhone = () => {
+  const inputValue = inputElement.value.toLowerCase();
   spinnerToggle("block");
   clearData("search-result");
   clearData("phone-details");
   clearData("card-container");
-  const inputValue = inputElement.value.toLowerCase();
   inputElement.value = "";
 
   // handle error for empty input and number value
@@ -103,7 +103,7 @@ const displayPhone = (phones) => {
   });
 };
 
-// function to fetch single phone and get the date
+// function to fetch single phone and get the data
 const loadDetail = (infoId) => {
   const url = `https://openapi.programming-hero.com/api/phone/${infoId}`;
   fetch(url)
@@ -113,7 +113,6 @@ const loadDetail = (infoId) => {
 
 // function to display single phone details
 const displayDetail = (phone) => {
-  console.log(phone);
   detailContainerDiv.innerHTML = `
         <div class="card rounded-3 p-3 border-0 shadow-lg">
             <img src="${
